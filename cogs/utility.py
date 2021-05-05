@@ -1,6 +1,8 @@
+import os
+import random
 import discord
+from replit import db
 from discord.ext import commands
-
 
 class Utility(commands.Cog):
     def __init__(self, bot):

@@ -1,7 +1,7 @@
 # initiating bot
 import os
 import random
-
+import discord
 from replit import db
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -11,7 +11,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # Below cogs represents our folder our cogs are in. Following is the file name. So 'meme.py' in cogs, would be cogs.meme
 # Think of it like a dot path import
 initial_extensions = ['cogs.utility',
-                      'cogs.economy',]
+                      'cogs.data',]
 
 # add your prefix here!
 bot = commands.Bot(command_prefix='//')
@@ -31,14 +31,13 @@ async def on_ready():
 
 # first command
 @bot.command(
-    name='test', # name of command, like !help
-    help="you don't need to know lol", # description in help menu
+    name='eval', # name of command, like !help
+    help="runs the code given", # description in help menu
 	hidden=True ) # hide this command
-async def template(ctx, arg1: str=None, arg2: int=None ): 
+async def eval(ctx, *, code ): 
     """ define the command and args
     you must also use converters, like str and int """
-    response = str(ctx.author.id) # what the bot will say
-    await ctx.send(response) # send it in the channel
+	await ctx.send("Sorry but the eval command simply doesnt exist...")
 
 # first command
 @bot.command(
