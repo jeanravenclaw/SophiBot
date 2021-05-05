@@ -30,13 +30,13 @@ async def on_ready():
 
 # first command
 @bot.command(
-    name='template', # name of command, like !help
+    name='test', # name of command, like !help
     help="you don't need to know lol", # description in help menu
 	hidden=True ) # hide this command
-async def helpcommand(ctx, arg1: str, arg2: int ): 
+async def template(ctx, arg1: str=None, arg2: int=None ): 
     """ define the command and args
     you must also use converters, like str and int """
-    response = "-_-" # what the bot will say
+    response = str(ctx.author.id) # what the bot will say
     await ctx.send(response) # send it in the channel
 
 # first command
