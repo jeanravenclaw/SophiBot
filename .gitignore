@@ -1,6 +1,7 @@
 # my stuff
 .env
 get-pip.py
+dump.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

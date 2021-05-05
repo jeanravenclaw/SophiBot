@@ -6,13 +6,26 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+# Below cogs represents our folder our cogs are in. Following is the file name. So 'meme.py' in cogs, would be cogs.meme
+# Think of it like a dot path import
+initial_extensions = ['cogs.utility',
+                      'cogs.fun',]
+
 # add your prefix here!
 bot = commands.Bot(command_prefix='//')
+
+# Here we load our extensions(cogs) listed above in [initial_extensions].
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        bot.load_extension(extension)
 
 # starts the bot
 @bot.event
 async def on_ready():
-    print(f'{bot.user.name} is ready!')
+    # print the bot's status
+    print(f'{bot.user} has connected to Discord!')
+    # change the rich presence of the bot
+    print(f'Successfully logged in and booted...!')
 
 # first command
 @bot.command(
@@ -24,4 +37,6 @@ async def helpcommand(ctx, arg1: str, arg2: int ):
     response = "-_-" # what the bot will say
     await ctx.send(response) # send it in the channel
 
+# run the bot
 bot.run(TOKEN)
+
