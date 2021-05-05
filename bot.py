@@ -2,6 +2,7 @@
 import os
 import random
 
+from replit import db
 from dotenv import load_dotenv
 from discord.ext import commands
 load_dotenv()
