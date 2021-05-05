@@ -1,2 +1,2 @@
-# thaasophobot
+# SophiBot
 Discord bot to avoid boredom.
