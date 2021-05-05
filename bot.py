@@ -9,7 +9,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # Below cogs represents our folder our cogs are in. Following is the file name. So 'meme.py' in cogs, would be cogs.meme
 # Think of it like a dot path import
 initial_extensions = ['cogs.utility',
-                      'cogs.fun',]
+                      'cogs.economy',]
 
 # add your prefix here!
 bot = commands.Bot(command_prefix='//')
