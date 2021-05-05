@@ -1,6 +1,7 @@
 # initiating bot
 import os
 import random
+
 from dotenv import load_dotenv
 from discord.ext import commands
 load_dotenv()
@@ -30,11 +31,22 @@ async def on_ready():
 # first command
 @bot.command(
     name='template', # name of command, like !help
-    help="you don't need to know lol") # description in help menu
+    help="you don't need to know lol", # description in help menu
+	hidden=True ) # hide this command
 async def helpcommand(ctx, arg1: str, arg2: int ): 
     """ define the command and args
     you must also use converters, like str and int """
     response = "-_-" # what the bot will say
+    await ctx.send(response) # send it in the channel
+
+# first command
+@bot.command(
+    name='sophie', # name of command, like !help
+    help="you don't need to know lol", # description in help menu
+	hidden=True ) # hide this command
+async def sophie(ctx): 
+    """ this command basically tells the user about the bot's history and such """
+    response = "OK, so lemme tell ya a story. \n \n So there was this girl called Jean and she wanted to make a bot. So she learned Python and made a bot. But she couldn't think of a name. So an idea came to her to name the bot after the fear of boredom. \n \n **Thaasophobot** was born. But that's such a weird name that's totally boring. So the solution was to give the bot a better name. She decided to call the bot **Sophie** cuz why not and -soph- was in the middle of thaasophobot and it was a nice name too. So yeah. \n \n I'm Sophie. Hi." # what the bot will say
     await ctx.send(response) # send it in the channel
 
 # run the bot
