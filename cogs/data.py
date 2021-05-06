@@ -30,7 +30,9 @@ class Data(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="reset")
+    @commands.command(
+        name="reset",
+        hidden=True)
     async def reset(self, ctx):
         """ resets the database """
         id = ctx.author.id
@@ -44,7 +46,10 @@ class Data(commands.Cog):
         else:
             print(f"attempted reset by {id}")
 
-    @commands.command(name='dbset')
+    @commands.command(
+		name='dbset',
+		help="Sets your data. You can change it to any text you want.",
+		brief="Sets your data.")
     async def dbset(self, ctx, *, anything):
         """Sets your personal value"""
         id = str(ctx.author.id) # gets user id
@@ -56,7 +61,10 @@ class Data(commands.Cog):
         await ctx.send(f'Changed your data to: ```{anything}```')
         print("successfully set data")
 
-    @commands.command(name='dbget')
+    @commands.command(
+		name='dbget',
+		help="Retrieves your data stored with dbset.",
+		brief="Retrieves your data.")
     async def dbget(self, ctx):
         """Gets your personal value"""
         id = str(ctx.author.id) # gets user id
@@ -68,7 +76,7 @@ class Data(commands.Cog):
         if value != "":
             await ctx.send(f'Here\'s your data: ```{value}```')
         else:
-            await ctx.send(f"Your data is nonexistent!")
+            await ctx.send(f"Your data is nonexistent! Please use `dbset` to set it!")
         print("successfully set data")
         
 
