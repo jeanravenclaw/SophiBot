@@ -48,8 +48,8 @@ class Data(commands.Cog):
 
     @commands.command(
 		name='dbset',
-		help="Sets your data. You can change it to any text you want.",
-		brief="Sets your data.")
+		help="Sets your data stored in SophiBot. You can change it to any text you want.",
+		brief="Sets your data")
     async def dbset(self, ctx, *, anything):
         """Sets your personal value"""
         id = str(ctx.author.id) # gets user id
@@ -63,8 +63,8 @@ class Data(commands.Cog):
 
     @commands.command(
 		name='dbget',
-		help="Retrieves your data stored with dbset.",
-		brief="Retrieves your data.")
+		help="Retrieves your data stored in SophiBot with dbset.",
+		brief="Retrieves your data")
     async def dbget(self, ctx):
         """Gets your personal value"""
         id = str(ctx.author.id) # gets user id
@@ -82,7 +82,6 @@ class Data(commands.Cog):
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case MembersCog.
 # When we load the cog, we use the name of the file.
-
 
 def setup(bot):
     bot.add_cog(Data(bot))
