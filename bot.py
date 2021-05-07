@@ -5,16 +5,18 @@ import discord
 from replit import db
 from dotenv import load_dotenv
 from discord.ext import commands
+from keep_alive import keep_alive
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 # Below cogs represents our folder our cogs are in. Following is the file name. So 'meme.py' in cogs, would be cogs.meme
 # Think of it like a dot path import
 initial_extensions = ['cogs.utility',
-                      'cogs.data']
+                      'cogs.data',
+					  'cogs.rank']
 
 # add your prefix here!
-bot = commands.Bot(command_prefix='.')
+bot = commands.Bot(command_prefix='# ')
 
 # Here we load our extensions(cogs) listed above in [initial_extensions].
 if __name__ == '__main__':
@@ -50,4 +52,5 @@ async def sophie(ctx):
     await ctx.send(response)  # send it in the channel
 
 # run the bot
+keep_alive()
 bot.run(TOKEN)

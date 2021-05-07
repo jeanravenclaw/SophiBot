@@ -19,11 +19,11 @@ class Rank(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(
+    """ @commands.command(
         name="reset",
         hidden=True)
     async def reset(self, ctx):
-        """ resets the database """
+        # resets the database 
         id = ctx.author.id
         if id == 690173341104865310:
             keys = db.keys()
@@ -33,18 +33,17 @@ class Rank(commands.Cog):
                 print(f"deleted key {i}")
             await ctx.send(f'completed reset!')
         else:
-            print(f"attempted reset by {id}")
-	
-	@commands.Cog.listener()
-    async def on_ready(self):
-        pass
+            print(f"attempted reset by {id}") """
 
     @commands.Cog.listener('on_message')
+    @commands.cooldown(1,5,BucketType.user)
     async def foo(self, message: discord.Message):
-        pass
-	
-	@commands.cooldown(1,60,user):
-		
+        channel = message.channel
+        author = message.author
+        if author.bot == False:
+            # await channel.send("")
+            print(f"woo successful {message.author}")
+
 
 def setup(bot):
     bot.add_cog(Rank(bot))
