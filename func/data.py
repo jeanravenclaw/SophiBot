@@ -113,18 +113,25 @@ def progress_bar(current, goal):
     # replace all bananas to apples
 
     string = ""
+    integ = 0
 
     for i in range(1, done_10 + 1):
         if i != 1:
             string += "<:2_green_bar:841292517307973632>"
         else:
             string += "<:3_left_green_bar:841292517156323369>"
+        
+        integ += 1 # add 1 to integ
     
     for i in range(1, left_10 + 1):
-        if i != (left_10):
+        if integ == 0: # if string is empty
+            string += "<:3_left_white_bar:841292517186076733>"
+        elif i != (left_10): # if it's not the last
             string += "<:2_white_bar:841294390055796756>"
-        else:
+        else: # if string is not empty and it's not the last
             string += "<:1_right_white_bar:841292517123031070>"
+        
+        integ += 1 # add 1 to integ
     
     # replace_1 = string.replace("1", "<:2_green_bar:841292517307973632>")
     # replace_0 = replace_1.replace("0", "<:2_white_bar:841294390055796756>")

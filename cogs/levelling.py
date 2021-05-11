@@ -5,9 +5,7 @@ import discord
 import typing
 from replit import db
 from discord.ext import commands
-from func.data import value_check
-from func.data import get_rank
-from func.data import progress_bar
+from func.data import value_check, get_rank, progress_bar
 
 # cooldown
 message_cooldown = commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
@@ -70,8 +68,8 @@ class Levelling(commands.Cog):
     
     @commands.command(
         name="rank",
-        help="Checks your current rank in the server's levelling system.",
-        brief="Checks your current rank.")
+        help="Checks a member's current rank.",
+        brief="Checks a member's current rank.")
     async def rank(self, ctx, member: typing.Optional[discord.Member]):
         if member == None:
              u = ctx.author
@@ -111,7 +109,7 @@ class Levelling(commands.Cog):
     @commands.command(
         name="leaderboard",
         help="Displays the server's levelling leaderboard",
-        brief="Displays the server's leaderboard",
+        brief="Displays the server's levelling leaderboard",
         aliases=["lb", "ranks"])
     async def leaderboard(self, ctx):
         # var = db[str(ctx.author.id)]

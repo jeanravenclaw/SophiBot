@@ -26,7 +26,7 @@ class Utility(commands.Cog):
 
     @commands.command(
         name='dbset',
-        help="Sets your data stored in SophiBot. You can change it to any text you want.",
+        help="Sets your data. You can change it to any text you want.",
         brief="Sets your data")
     async def dbset(self, ctx, *, anything):
         """Sets your personal value"""
