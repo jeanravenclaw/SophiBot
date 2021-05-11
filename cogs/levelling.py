@@ -2,6 +2,7 @@ from discord.ext.commands.cooldowns import BucketType
 import os
 import random
 import discord
+import typing
 from replit import db
 from discord.ext import commands
 from func.data import value_check
@@ -26,7 +27,7 @@ class Levelling(commands.Cog):
     # adds the user xp every 1 minute of messaging
     @commands.Cog.listener('on_message')
     async def foo(self, message: discord.Message):
-        channel = message.channel
+        # channel = message.channel
         author = message.author
         if author.bot == False:
             # await channel.send("")
@@ -71,8 +72,11 @@ class Levelling(commands.Cog):
         name="rank",
         help="Checks your current rank in the server's levelling system.",
         brief="Checks your current rank.")
-    async def rank(self, ctx):
-        u = ctx.author
+    async def rank(self, ctx, member: typing.Optional[discord.Member]):
+        if member == None:
+             u = ctx.author
+        else: 
+            u = member
         rank = get_rank(u.id)
         var = db[str(u.id)]
         bar = progress_bar(var["lvl_xp"], var["lvl_next"])
