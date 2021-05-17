@@ -6,9 +6,11 @@ import typing
 from replit import db
 from discord.ext import commands
 from func.data import value_check, get_rank, progress_bar
+from func.cooldown import cooldown_cmd
 
 # cooldown
-message_cooldown = commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
+message_cooldown = cooldown_cmd(1.0, 60.0, "user")
+# commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
 
 """
 
@@ -118,20 +120,21 @@ class Levelling(commands.Cog):
         list_of_dicts = []
 
         for user_key in keys:
-            # user_key is just a key (aka string)
-            u = db[str(user_key)] # get the db value of the key
-            lvl = u["lvl"]
-            lvl_xp = u["lvl_xp"]
-            # lvl_next = u["lvl_next"]
-            # we don't need this lol
+            if user_key != "tags":
+                # user_key is just a key (aka string)
+                u = db[str(user_key)] # get the db value of the key
+                lvl = u["lvl"]
+                lvl_xp = u["lvl_xp"]
+                # lvl_next = u["lvl_next"]
+                # we don't need this lol
 
-            user_dict = {
-                "id": user_key,
-                "level": lvl,
-                "xp": lvl_xp
-            } # this way, our data can be used easily
+                user_dict = {
+                    "id": user_key,
+                    "level": lvl,
+                    "xp": lvl_xp
+                } # this way, our data can be used easily
 
-            list_of_dicts.append(user_dict)
+                list_of_dicts.append(user_dict)
 
         """ 
         list_of_dicts = [

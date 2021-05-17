@@ -52,20 +52,24 @@ def get_rank(userid):
     list_of_dicts = []
 
     for user_key in keys:
-        # user_key is just a key (aka string)
-        u = db[str(user_key)] # get the db value of the key
-        lvl = u["lvl"]
-        lvl_xp = u["lvl_xp"]
-        # lvl_next = u["lvl_next"]
-        # we don't need this lol
+        if user_key != "tags":
+            # user_key is just a key (aka string)
+            u = db[str(user_key)] # get the db value of the key
+            print(u)
+            value_check(userid, "lvl", 0)
+            value_check(userid, "lvl_xp", 0)
+            lvl = u["lvl"]
+            lvl_xp = u["lvl_xp"]
+            # lvl_next = u["lvl_next"]
+            # we don't need this lol
 
-        user_dict = {
-            "id": user_key,
-            "level": lvl,
-            "xp": lvl_xp
-        } # this way, our data can be used easily
+            user_dict = {
+                "id": user_key,
+                "level": lvl,
+                "xp": lvl_xp
+            } # this way, our data can be used easily
 
-        list_of_dicts.append(user_dict)
+            list_of_dicts.append(user_dict)
 
     def myFunc(e):
         return e["level"]
@@ -116,10 +120,12 @@ def progress_bar(current, goal):
     integ = 0
 
     for i in range(1, done_10 + 1):
-        if i != 1:
-            string += "<:2_green_bar:841292517307973632>"
-        else:
+        if integ == 0: # if string is empty
             string += "<:3_left_green_bar:841292517156323369>"
+        elif integ != 9: # if it's in the middle
+            string += "<:2_green_bar:841292517307973632>"
+        else: # if it's the last
+            string += "<:1_right_green_bar:841292517122900029>"
         
         integ += 1 # add 1 to integ
     
@@ -128,7 +134,7 @@ def progress_bar(current, goal):
             string += "<:3_left_white_bar:841292517186076733>"
         elif i != (left_10): # if it's not the last
             string += "<:2_white_bar:841294390055796756>"
-        else: # if string is not empty and it's not the last
+        else: # if it's the last
             string += "<:1_right_white_bar:841292517123031070>"
         
         integ += 1 # add 1 to integ
