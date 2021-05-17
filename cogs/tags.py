@@ -32,6 +32,8 @@ class Tags(commands.Cog):
             found = find_tag(tag) # searches for the tag
             if found["value"] != None:
                 await ctx.send(found["value"])
+                # everyone=True, users=True, roles=True, replied_user=True
+                # self.bot.allowed_mentions(everyone=False, users=False, roles=False, replied_user=False)
             else: # send a list of tags
                 find_tag("tags")
                 tags = db["tags"]
