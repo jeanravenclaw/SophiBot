@@ -1,6 +1,8 @@
 import discord
 from discord.ext import tasks, commands
 from datetime import datetime
+from datetime import date
+import calendar
 
 class Crons(commands.Cog):
     def __init__(self, bot):
@@ -22,6 +24,9 @@ class Crons(commands.Cog):
             return num
 
         def start(name : str):
+            my_date = date.today() # gets day
+            day = calendar.day_name[my_date.weekday()]  #'Wednesday'
+            
             time = current_time
             split = time.split(":")
             
@@ -42,7 +47,7 @@ class Crons(commands.Cog):
             new_time = f"{hour}:{minute} {ampm}"
 
             embed = discord.Embed(
-                title = f'`{new_time}`', 
+                title = f'{day} | {new_time}', 
                 description = f'{name}')
             return embed
 
@@ -102,15 +107,16 @@ class Crons(commands.Cog):
         02:00 pm = 11:00
         03:00 pm = 12:00
         04:00 pm = 13:00
-        """
-        """
-        if current_time == "14:21":
+        \"""
+        
+        if current_time == "14:25":
             await channel.purge(limit=100)
             embed = start("**Lesson Alarms!**\n" + \
             "From now on, you'll get lesson alarms from SophiBot!\n" + \
             "This will provide us with more detailed info and more frequent reminders.")
             await channel.send(embed=embed)
-        """
+        """ 
+        
 
         # UTC = time - 3h
 
