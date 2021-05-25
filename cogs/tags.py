@@ -28,7 +28,7 @@ class Tags(commands.Cog):
 	
 	@commands.group(
 		name="tag",
-		help="Retrieves the value of a tag.",
+		brief="Retrieves the value of a tag.",
 		invoke_without_command=True,
 		aliases=["tags"]
 	)
@@ -60,7 +60,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="delete",
-		help="Deletes a tag",
+		brief="Deletes a tag",
 		hidden=True,
 		aliases=["del", "rem", "remove"]
 	)
@@ -83,7 +83,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="set",
-		help="Sets the value of a tag."
+		brief="Sets the value of a tag."
 	)
 	async def set(self, ctx, name : str, *, value : str):
 		tags = db["tags"] # the tag database
@@ -126,7 +126,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="list",
-		help="Retrieves a list of tags."
+		brief="Retrieves a list of tags."
 	)
 	async def list(self, ctx):
 		find_tag("tags")

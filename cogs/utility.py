@@ -26,7 +26,6 @@ class Utility(commands.Cog):
 	
 	@commands.command(
 		name='ping',
-		help="Displays the bot's latency.",
 		brief="Displays the bot's latency.",
 		aliases=["latency", "pong"])
 	async def ping(self, ctx):
@@ -38,8 +37,7 @@ class Utility(commands.Cog):
 
 	@commands.command(
 		name='dbset',
-		help="Sets your data. You can change it to any text you want.",
-		brief="Sets your data")
+		brief="Sets your data.",)
 	async def dbset(self, ctx, *, anything):
 		"""Sets your personal value"""
 		id = str(ctx.author.id) # gets user id
@@ -53,8 +51,7 @@ class Utility(commands.Cog):
 
 	@commands.command(
 		name='dbget',
-		help="Retrieves your data stored in SophiBot with dbset.",
-		brief="Retrieves your data")
+		brief="Retrieves your data.",)
 	async def dbget(self, ctx):
 		"""Gets your personal value"""
 		id = str(ctx.author.id) # gets user id

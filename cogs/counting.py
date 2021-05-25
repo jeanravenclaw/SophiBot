@@ -6,13 +6,18 @@ import typing
 from replit import db
 from discord.ext import commands
 from func.server import server_var
+from func.ez import l
 
 class Counting(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+	""" this is where all the counting happens
+	it is triggered for every message in the Counting
+	channel (configurable) """
 	@commands.Cog.listener('on_message')
 	async def count(self, message: discord.Message):
+		# just make stuff easier :D
 		content = message.content
 		channel = message.channel
 		author = message.author
@@ -78,12 +83,12 @@ class Counting(commands.Cog):
 	
 	@commands.command(
 		name="stats",
-		help="Checks the counting stats")
+		brief="Checks the counting stats",)
 	async def reset(self, ctx):
 		current = server_var("count_current", 1) # init counting
 		streak = server_var("count_streak", 0) # init streak
 		last = server_var("count_last", 0) # init last user
-
+		# send an embed
 		embed = discord.Embed(
 			title = 'Counting Stats', 
 			description = (
@@ -91,7 +96,6 @@ class Counting(commands.Cog):
 				f"Highest Streak: `{streak}`\n"
 				f"Last User: <@{last}>"
 				))
-		
 		await ctx.send(embed=embed)
 
 

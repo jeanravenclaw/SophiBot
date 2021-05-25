@@ -4,6 +4,33 @@ from datetime import datetime
 from datetime import date
 import calendar
 
+timetable = [
+	#["07:00", "Tutor Period"],
+
+	#["07:20", "Period 1"],
+	#["08:00", "Period 2"],
+
+	#["08:40", "Period 3"],
+	#["09:20", "Period 4"],
+
+	#["09:50", "Break 1"],
+
+	#["10:25", "Period 5"],
+	#["11:05", "Period 6"],
+	
+	#["11:35", "Break 2"],
+
+	#["12:30", "Period 7"],
+	#["13:00", "Period 8"],
+
+	#["13:30", "Dismissal"]
+
+	["08:00", "EOY exams start"],
+	["08:50", "50m passed"],
+	["09:10", "1h 10m passed"],
+	["10:00", "EOY exams end"],
+]
+
 class Crons(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -72,28 +99,6 @@ class Crons(commands.Cog):
 
 
 		weekdays =  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"]
-
-		timetable = [
-			["07:00", "Tutor Period"],
-
-			["07:20", "Period 1"],
-			["08:00", "Period 2"],
-
-			["08:40", "Period 3"],
-			["09:20", "Period 4"],
-
-			["09:50", "Break 1"],
-
-			["10:25", "Period 5"],
-			["11:05", "Period 6"],
-			
-			["11:35", "Break 2"],
-
-			["12:30", "Period 7"],
-			["13:00", "Period 8"],
-
-			["13:30", "Dismissal"]
-		]
 
 		if True and day in weekdays: # if it's a weekday
 			for lesson in timetable:
