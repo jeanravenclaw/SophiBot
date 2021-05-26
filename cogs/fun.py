@@ -12,13 +12,16 @@ from func.cooldown import cooldown_cmd
 message_cooldown = cooldown_cmd(1.0, 60.0, "user")
 # commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
 
-class Fun(commands.Cog):
+class fun(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	@commands.command(
 		name="points",
-		brief="Displays your points.",
+		help="""Dispkays how many points a user has.
+
+<user> = the user whose points you want to check
+         Defaults to the current user""",
 		aliases=["bal", "balance"],
 	)
 	async def points(self, ctx, member: typing.Optional[discord.Member]):
@@ -90,7 +93,11 @@ class Fun(commands.Cog):
 	
 	@commands.command(
 		name="rank",
-		brief="Checks a member's current rank.",)
+		help="""Displays a user's level and rank.
+
+<user> = the user whose level you want to check
+         Defaults to the current user""",
+		 )
 	async def rank(self, ctx, member: typing.Optional[discord.Member]):
 		# set who 'u' is
 		if member == None:
@@ -128,8 +135,15 @@ class Fun(commands.Cog):
 
 	@commands.command(
 		name="leaderboard",
-		brief="Displays the server's leaderboard",
-		aliases=["lb", "ranks", "top", "high", "hi"])
+		help="""Dispkays the user leaderboard in a certain group
+
+Available groups:
+  - Levelling
+  - Economy
+
+<group> = the group you want to check the leaderbard of""",
+		aliases=["lb", "ranks", "top", "high", "hi"]
+		)
 	async def leaderboard(self, ctx, type : str = None):
 		if type != None:
 			if type in ["level", "levelling", "rank", "ranks"]:
@@ -145,4 +159,4 @@ class Fun(commands.Cog):
 
 
 def setup(bot):
-	bot.add_cog(Fun(bot))
+	bot.add_cog(fun(bot))

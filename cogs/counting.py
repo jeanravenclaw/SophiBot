@@ -8,7 +8,7 @@ from discord.ext import commands
 from func.server import server_var
 from func.ez import l
 
-class Counting(commands.Cog):
+class counting(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
@@ -83,8 +83,18 @@ class Counting(commands.Cog):
 	
 	@commands.command(
 		name="stats",
-		brief="Checks the counting stats",)
-	async def reset(self, ctx):
+		help="""Displays the counting stats.
+
+**Next Number:** the next number to count
+**Highest Streak:** the highest number reached
+**Last User:** the last user to count
+
+**RULES**:
+1. You can't count the wrong number
+2. You can't count twice in a row
+
+Doing so will reset the count to 1.""",)
+	async def stats(self, ctx):
 		current = server_var("count_current", 1) # init counting
 		streak = server_var("count_streak", 0) # init streak
 		last = server_var("count_last", 0) # init last user
@@ -100,4 +110,4 @@ class Counting(commands.Cog):
 
 
 def setup(bot):
-	bot.add_cog(Counting(bot))
+	bot.add_cog(counting(bot))

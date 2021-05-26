@@ -8,7 +8,7 @@ from discord.ext import commands
 from func.cooldown import cooldown_cmd
 from func.tagfinder import find_tag
 
-class Tags(commands.Cog):
+class tags(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
@@ -28,7 +28,15 @@ class Tags(commands.Cog):
 	
 	@commands.group(
 		name="tag",
-		brief="Retrieves the value of a tag.",
+		help="""Shows the tags value.
+
+Special tags:
+  - delete [tag]
+  - set [name] [value]
+  - list
+
+<tag> = the tag you're looking at
+        Defaults to a list of tags""",
 		invoke_without_command=True,
 		aliases=["tags"]
 	)
@@ -60,7 +68,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="delete",
-		brief="Deletes a tag",
+		help="Deletes a tag",
 		hidden=True,
 		aliases=["del", "rem", "remove"]
 	)
@@ -83,7 +91,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="set",
-		brief="Sets the value of a tag."
+		help="Sets the value of a tag."
 	)
 	async def set(self, ctx, name : str, *, value : str):
 		tags = db["tags"] # the tag database
@@ -126,7 +134,7 @@ class Tags(commands.Cog):
 
 	@tag.command(
 		name="list",
-		brief="Retrieves a list of tags."
+		help="Retrieves a list of tags."
 	)
 	async def list(self, ctx):
 		find_tag("tags")
@@ -149,4 +157,4 @@ class Tags(commands.Cog):
 
 
 def setup(bot):
-	bot.add_cog(Tags(bot))
+	bot.add_cog(tags(bot))

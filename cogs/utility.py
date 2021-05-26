@@ -5,12 +5,14 @@ from replit import db
 from discord.ext import commands
 from func.data import value_check
 
-class Utility(commands.Cog):
+class utility(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	@commands.command(
 		name="reset",
+		help="""Resets the bot's database.
+This includes counting statistics, levels, points, and more.""",
 		hidden=True)
 	async def reset(self, ctx):
 		""" resets the database """
@@ -26,8 +28,18 @@ class Utility(commands.Cog):
 	
 	@commands.command(
 		name='ping',
-		brief="Displays the bot's latency.",
-		aliases=["latency", "pong"])
+		help="""Displays the bot's latency.
+This means how fast the bot works. 
+It may differ based on what command you are using.
+
+**Latency Table**
+`00.00 - 20.00` = seamlessly fast
+`20.00 - 30.00` = average latency
+`30.00 - 50.00` = normally slow
+`50.00 - 70.00` = somewhat slow
+`70.00 and above` = heavy duty""",
+		aliases=["latency", "pong"]
+		)
 	async def ping(self, ctx):
 		latency = round(self.bot.latency * 1000, 2)
 		embed = discord.Embed(
@@ -37,7 +49,9 @@ class Utility(commands.Cog):
 
 	@commands.command(
 		name='dbset',
-		brief="Sets your data.",)
+		help="""Sets your data stored into the bot.
+You can put anything you want into this."""
+	)
 	async def dbset(self, ctx, *, anything):
 		"""Sets your personal value"""
 		id = str(ctx.author.id) # gets user id
@@ -51,7 +65,10 @@ class Utility(commands.Cog):
 
 	@commands.command(
 		name='dbget',
-		brief="Retrieves your data.",)
+		help="""Gets your data stored into the bot.
+You can put anything you want into this.
+You can set your data using `dbset`."""
+		)
 	async def dbget(self, ctx):
 		"""Gets your personal value"""
 		id = str(ctx.author.id) # gets user id
@@ -71,5 +88,5 @@ class Utility(commands.Cog):
 # When we load the cog, we use the name of the file.
 
 def setup(bot):
-	bot.add_cog(Utility(bot))
+	bot.add_cog(utility(bot))
 

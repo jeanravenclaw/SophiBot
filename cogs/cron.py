@@ -31,7 +31,7 @@ timetable = [
 	["10:00", "EOY exams end"],
 ]
 
-class Crons(commands.Cog):
+class crons(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 		self.before_cron()
@@ -115,4 +115,4 @@ class Crons(commands.Cog):
 		await self.bot.wait_until_ready() 
 
 def setup(bot):
-	bot.add_cog(Crons(bot))
+	bot.add_cog(crons(bot))
