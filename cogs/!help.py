@@ -11,7 +11,6 @@ from func.ez import l, wrap
 
 class MyHelpCommand(commands.MinimalHelpCommand):
 	def get_command_signature(self, command):
-		# return '`%s%s %s`' % (self.clean_prefix, command.qualified_name, command.signature)
 		return f"{self.clean_prefix}{command.qualified_name} {command.signature}"
 	
 	async def send_pages(self): # basically just handle stuff
@@ -76,6 +75,34 @@ class MyHelpCommand(commands.MinimalHelpCommand):
 		embed = discord.Embed(
 			title=self.get_command_signature(command),
 			description=description)
+
+		channel = self.get_destination()
+		await channel.send(embed=embed)
+	
+	async def send_group_help(self, group):
+		for i in group.commands:
+			command = i.parent
+		description = l(f"\n{command.help}")
+		alias = command.aliases
+		if alias:
+			alias = ", ".join(alias)
+			description = f"**Aliases:** `{alias}`\n\n" + description
+		
+		embed = discord.Embed(
+			title=self.get_command_signature(command),
+			description=description)
+
+		command_names = []
+		for subcommand in group.commands:
+			command_names.append(subcommand.name)
+
+		command_list = ", ".join(command_names) # join it
+		wrapped = wrap(command_list, 38)
+		
+		embed.add_field(
+			name = 'Subcommands', 
+			value = f"```\n{wrapped}```", 
+			inline=False) 
 
 		channel = self.get_destination()
 		await channel.send(embed=embed)

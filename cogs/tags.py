@@ -28,15 +28,10 @@ class tags(commands.Cog):
 	
 	@commands.group(
 		name="tag",
-		help="""Shows the tags value.
+		help="""Shows the tag's value.
 
-Special tags:
-  - delete [tag]
-  - set [name] [value]
-  - list
-
-<tag> = the tag you're looking at
-        Defaults to a list of tags""",
+**<tag>**: the tag you're looking at
+Defaults to a list of tags""",
 		invoke_without_command=True,
 		aliases=["tags"]
 	)
@@ -68,7 +63,10 @@ Special tags:
 
 	@tag.command(
 		name="delete",
-		help="Deletes a tag",
+		help="""Deletes the specified tag.
+
+This action cannot be undone.
+For recovery, the embed has the tag value.""",
 		hidden=True,
 		aliases=["del", "rem", "remove"]
 	)
@@ -91,7 +89,10 @@ Special tags:
 
 	@tag.command(
 		name="set",
-		help="Sets the value of a tag."
+		help="""Sets the value of the tag.
+
+The value may span many lines.
+You can use markdown."""
 	)
 	async def set(self, ctx, name : str, *, value : str):
 		tags = db["tags"] # the tag database
@@ -134,7 +135,9 @@ Special tags:
 
 	@tag.command(
 		name="list",
-		help="Retrieves a list of tags."
+		help="""Retrieves a list of tags.
+
+You can also run `tag` with no arguments."""
 	)
 	async def list(self, ctx):
 		find_tag("tags")

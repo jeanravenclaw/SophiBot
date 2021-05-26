@@ -20,8 +20,8 @@ class fun(commands.Cog):
 		name="points",
 		help="""Dispkays how many points a user has.
 
-<user> = the user whose points you want to check
-         Defaults to the current user""",
+**<user>**: the user whose points you want to check
+Defaults to the current user""",
 		aliases=["bal", "balance"],
 	)
 	async def points(self, ctx, member: typing.Optional[discord.Member]):
@@ -72,11 +72,11 @@ class fun(commands.Cog):
 
 			if retry_after: # if there's a cooldown
 				retry = round(retry_after)
-				print(f"xp for {message.author} in {retry} seconds")
+				#print(f"xp for {message.author} in {retry} seconds")
 			else: # add xp to user
 				rand = random.randint(5, 7)
 				var["lvl_xp"] += rand
-				print(f"{message.author} recieved {rand} xp and now has {var['lvl_xp']}.")
+				#print(f"{message.author} recieved {rand} xp and now has {var['lvl_xp']}.")
 
 			# if they could level up
 			if var["lvl_xp"] >= var["lvl_next"]: # if they could level up
@@ -88,14 +88,14 @@ class fun(commands.Cog):
 					var["lvl_next"] += round(var["lvl_next"] / 5) # whatever calculation
 
 				var["lvl"] += 1 # level up
-				print(f"{message.author} levelled up to level {var['lvl']}")
+				#print(f"{message.author} levelled up to level {var['lvl']}")
 				await message.channel.send(f"<@{message.author.id}> levelled up to level {var['lvl']}!")
 	
 	@commands.command(
 		name="rank",
 		help="""Displays a user's level and rank.
 
-<user> = the user whose level you want to check
+**<user>**: the user whose level you want to check
          Defaults to the current user""",
 		 )
 	async def rank(self, ctx, member: typing.Optional[discord.Member]):
@@ -137,11 +137,11 @@ class fun(commands.Cog):
 		name="leaderboard",
 		help="""Dispkays the user leaderboard in a certain group
 
-Available groups:
+**Available groups:**
   - Levelling
   - Economy
 
-<group> = the group you want to check the leaderbard of""",
+**<group>**: the group you want to check the leaderbard of""",
 		aliases=["lb", "ranks", "top", "high", "hi"]
 		)
 	async def leaderboard(self, ctx, type : str = None):
