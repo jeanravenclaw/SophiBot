@@ -50,14 +50,16 @@ def get_rank(userid):
 
 	keys = db.keys()
 	list_of_dicts = []
+	value_check(userid, "lvl", 0)
+	value_check(userid, "lvl_xp", 0)
 
 	for user_key in keys:
 		if user_key != "tags" and user_key !="server":
 			# user_key is just a key (aka string)
 			u = db[str(user_key)] # get the db value of the key
 			print(u)
-			value_check(userid, "lvl", 0)
-			value_check(userid, "lvl_xp", 0)
+			value_check(user_key, "lvl", 0)
+			value_check(user_key, "lvl_xp", 0)
 			lvl = u["lvl"]
 			lvl_xp = u["lvl_xp"]
 			# lvl_next = u["lvl_next"]
@@ -152,6 +154,8 @@ def le_lb():
 
 	for user_key in keys:
 		if user_key != "tags" and user_key !="server":
+			value_check(user_key, "lvl", 0)
+			value_check(user_key, "lvl_xp", 0)
 			# user_key is just a key (aka string)
 			u = db[str(user_key)] # get the db value of the key
 			lvl = u["lvl"]
@@ -236,6 +240,7 @@ def eco_lb():
 
 	for user_key in keys:
 		if user_key != "tags" and user_key !="server":
+			value_check(user_key, "points", 0)
 			# user_key is just a key (aka string)
 			u = db[str(user_key)] # get the db value of the key
 			points = u["points"]

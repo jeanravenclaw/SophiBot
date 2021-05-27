@@ -1,3 +1,5 @@
+import random
+
 ts_lyrics = """
 When you think Tim McGraw, I hope you think of me.
 You're just another picture to burn.
@@ -106,7 +108,7 @@ You're so gorgeous.
 We were riding, in a getaway car.
 King of my heart, body and soul.
 Dancing with our hands tied.
-Flashback when you met me/
+Flashback when you met me.
 This is why we can't have nice things.
 Call it what you want.
 I'll be cleaning up bottles with you on New Year's Day.
@@ -173,3 +175,4 @@ You make me crazier, crazier, crazier.
 """
 
 ts_lyrics = ts_lyrics.split("\n")
+random_lyric = ts_lyrics[random.randint(0, len(ts_lyrics))]

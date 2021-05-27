@@ -1,7 +1,16 @@
-# embeds
+# commands
 ```py
+	@commands.command(
+		name="",
+		help=""" """
+	)
+	async def command(self,ctx):
+		pass
+```
+
 # embeds
 
+```py
 embed = discord.Embed(title = 'Test Embed', description = 'hello world')
 embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
 

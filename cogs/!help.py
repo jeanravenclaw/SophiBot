@@ -8,7 +8,6 @@ from discord.ext import commands
 from func.server import server_var
 from func.ez import l, wrap
 
-
 class MyHelpCommand(commands.MinimalHelpCommand):
 	def get_command_signature(self, command):
 		return f"{self.clean_prefix}{command.qualified_name} {command.signature}"
@@ -20,7 +19,7 @@ class MyHelpCommand(commands.MinimalHelpCommand):
 			await destination.send(embed=emby)
 	
 	async def send_bot_help(self, mapping): # help
-		embed = discord.Embed(title="SophiBot Help") # the title
+		embed = discord.Embed(title="SophiBot Help",) # the title
 		for cog, commands in mapping.items():
 			filtered = await self.filter_commands(commands, sort=True) # commands
 			command_signatures = [self.get_command_signature(c) for c in filtered] # command signatures
@@ -39,8 +38,9 @@ class MyHelpCommand(commands.MinimalHelpCommand):
 		embed = discord.Embed(title="SophiBot Help") # the title
 		cog_name = cog.qualified_name # get the cog's name
 		command_list = cog.get_commands() # gets a list of commands
+		filtered = await self.filter_commands(command_list, sort=True)
 		command_names = []
-		for command in command_list: # iterate to get their names
+		for command in filtered: # iterate to get their names
 			command_names.append(command.name) # from the objects
 		command_list = ", ".join(command_names) # join it
 		wrapped = wrap(command_list, 38)

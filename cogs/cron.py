@@ -2,6 +2,7 @@ import discord
 from discord.ext import tasks, commands
 from datetime import datetime
 from datetime import date
+import func.lyrics.lyrics as ts
 import calendar
 
 timetable = [
@@ -39,6 +40,21 @@ class crons(commands.Cog):
 	
 	@tasks.loop(minutes=1)
 	async def cron(self):
+		# status
+		snippet = ts.random_lyric
+		
+		activity = discord.Activity(
+			name=snippet, 
+			type=discord.ActivityType.listening
+			)
+		game = discord.Game(f"'{snippet}'")
+		
+		await self.bot.change_presence(
+			status=discord.Status.idle, 
+			activity=game,
+			afk=False
+			)
+		# reminders
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
 		channel = self.bot.get_channel(768095329244413995)

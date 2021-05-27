@@ -21,7 +21,16 @@ initial_extensions = ['cogs.!help',
 					  'cogs.fun']
 
 # add your prefix here!
-bot = commands.Bot(command_prefix='# ')
+
+activity = discord.Activity(
+	name="Fearless (Taylor's Version", 
+	type=discord.ActivityType.listening
+	)
+bot = commands.Bot(
+	command_prefix='# ',
+	activity=activity,
+	status=discord.Status.idle,
+	afk=False)
 
 # Here we load our extensions(cogs) listed above in [initial_extensions].
 if __name__ == '__main__':
@@ -120,5 +129,6 @@ async def sophie(ctx):
 	await ctx.send(response)  # send it in the channel
 
 # run the bot
+
 keep_alive()
 bot.run(TOKEN)

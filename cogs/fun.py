@@ -8,6 +8,8 @@ from discord.ext import commands
 from func.data import value_check, economy_rank, eco_lb, get_rank, progress_bar, le_lb
 from func.cooldown import cooldown_cmd
 
+randint = random.randint
+
 # cooldown
 message_cooldown = cooldown_cmd(1.0, 60.0, "user")
 # commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
@@ -16,6 +18,7 @@ class fun(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+	# db[userid]["points"]
 	@commands.command(
 		name="points",
 		help="""Dispkays how many points a user has.
@@ -48,6 +51,74 @@ Defaults to the current user""",
 			icon_url = u.avatar_url
 			)
 		# send the message
+		await ctx.send(embed=embed)
+
+	@commands.command(
+		name="roll",
+		help="""Rolls three numbers.
+
+If you get three numbers of the same kind, you win.
+Winning awards you 2000 points.
+
+Totally not rigged."""
+		)
+	async def roll(self, ctx):
+		u = ctx.author
+
+		value_check(str(u.id), "rolls", 0)
+		value_check(str(u.id), "roll_wins", 0)
+		db[str(u.id)]["rolls"] += 1
+
+		rolled_numbers = str(randint(111, 999))
+		
+		winning = rolled_numbers[1] * 3
+		
+		if rolled_numbers == winning:
+			won = True
+		else:
+			won = False
+		
+		def to_numbers(txt : str):
+			new_text = txt
+			new_text = new_text.replace("1", "1️⃣")
+			new_text = new_text.replace("2", "2️⃣")
+			new_text = new_text.replace("3", "3️⃣")
+			new_text = new_text.replace("4", "4️⃣")
+			new_text = new_text.replace("5", "5️⃣")
+			new_text = new_text.replace("6", "6️⃣")
+			new_text = new_text.replace("7", "7️⃣")
+			new_text = new_text.replace("8", "8️⃣")
+			new_text = new_text.replace("9", "9️⃣")
+			new_text = new_text.replace("0", "0️⃣")
+			return new_text
+
+		# the emoji display
+		display = "<:3_left_white_bar:841292517186076733><:2_white_bar:841294390055796756> " + \
+		to_numbers(rolled_numbers) + \
+		" <:2_white_bar:841294390055796756><:1_right_white_bar:841292517123031070>"
+
+		embed = discord.Embed(
+			description = display
+			)
+		embed.set_author(
+			name = f"{u.name}", 
+			icon_url = u.avatar_url
+			)
+
+		if won:
+			embed.colour = 0x79ffc2
+			embed.set_footer(text = 'You won! +2000 points')
+			db[str(u.id)]["points"] += 2000
+			db[str(u.id)]["roll_wins"] += 1
+		else:
+			embed.colour = 0xff7998
+			if db[str(u.id)]["rolls"] % 100 == 0:
+				embed.set_footer(text = 'Serial roller! +10 points')
+				db[str(u.id)]["points"] += 10
+			else:
+				embed.set_footer(text = f"roll number {db[str(u.id)]['rolls']}⠀•⠀{db[str(u.id)]['roll_wins']} wins")
+			
+		
 		await ctx.send(embed=embed)
 
 	# adds the user xp every 1 minute of messaging
