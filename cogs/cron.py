@@ -1,8 +1,9 @@
+import traceback
 import discord
 from discord.ext import tasks, commands
 from datetime import datetime
 from datetime import date
-import func.lyrics.lyrics as ts
+import func.lyrics.tv_lyrics as ts
 import calendar
 
 timetable = [
@@ -41,13 +42,9 @@ class crons(commands.Cog):
 	@tasks.loop(minutes=1)
 	async def cron(self):
 		# status
-		snippet = ts.random_lyric
-		
-		activity = discord.Activity(
-			name=snippet, 
-			type=discord.ActivityType.listening
-			)
-		game = discord.Game(f"'{snippet}'")
+		snippet = ts.random_lyric()
+
+		game = discord.Game(f'"{snippet}"')
 		
 		await self.bot.change_presence(
 			status=discord.Status.idle, 
@@ -129,6 +126,14 @@ class crons(commands.Cog):
 	@cron.before_loop
 	async def before_cron(self):
 		await self.bot.wait_until_ready() 
+	
+	@cron.error
+	async def cron_error(self, error):
+		formatted = "".join(
+			traceback.format_exception(type(error), error, error.__traceback__)
+		)
+		# await self.bot.get_channel(channel_id).send(formatted)
+		print(formatted)
 
 def setup(bot):
 	bot.add_cog(crons(bot))
