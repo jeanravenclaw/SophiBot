@@ -1,7 +1,3 @@
-import os
-import random
-import discord
-from replit import db
 from discord.ext import commands
 
 def cooldown_cmd(rate, per, type):
