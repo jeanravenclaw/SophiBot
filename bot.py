@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from keep_alive import keep_alive
 import datetime
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -98,7 +99,6 @@ async def on_raw_reaction_add(ctx):
 
 			await board.send(embed=embed)
 
-# sample command
 @bot.command(
 	name='dump',  # name of command, like !help
 	hidden=True)  # hide this command
@@ -118,17 +118,6 @@ async def dump(ctx, *, content = None):
 		# await ctx.send(f"**Successfuly dumped!** \n <{link}>", delete_after=5)
 		await ctx.send(embed=embed, delete_after=5)
 
-# first command
-@bot.command(
-	name='sophie',  # name of command, like !help
-	help="you don't need to know lol",  # description in help menu
-	hidden=True)  # hide this command
-async def sophie(ctx):
-	""" this command basically tells the user about the bot's history and such """
-	response = "OK, so lemme tell ya a story. \n \nSo there was this girl called Jean and she wanted to make a bot. So she learned Python and made a bot. But she couldn't think of a name. So an idea came to her to name the bot after the fear of boredom. \n \n*Thaasophobot* was born. But that's such a weird name that's totally boring. So the solution was to give the bot a better name. She decided to call the bot *Sophie* cuz why not and -soph- was in the middle of thaasophobot and it was a nice name too. \n \nEventually, the name evolved into *The Sophie Bot*, and ultimately *SophiBot*. Etymology is fun. So yeah. \n \nI'm Sophie. Hi."  # what the bot will say
-	await ctx.send(response)  # send it in the channel
-
 # run the bot
-
 keep_alive()
 bot.run(TOKEN)

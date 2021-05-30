@@ -1,12 +1,6 @@
-from discord.ext.commands.cooldowns import BucketType
-import os
-import random
 import discord
-import typing
-from replit import db
 from discord.ext import commands
-from func.server import server_var
-from func.ez import l, wrap
+from ..func.ez import *
 
 class MyHelpCommand(commands.MinimalHelpCommand):
 	def get_command_signature(self, command):

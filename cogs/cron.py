@@ -3,7 +3,7 @@ import discord
 from discord.ext import tasks, commands
 from datetime import datetime
 from datetime import date
-import func.lyrics.tv_lyrics as ts
+from ..func.lyrics.tv_lyrics import *
 import calendar
 
 timetable = [
@@ -42,7 +42,7 @@ class crons(commands.Cog):
 	@tasks.loop(minutes=1)
 	async def cron(self):
 		# status
-		snippet = ts.random_lyric()
+		snippet = random_lyric()
 
 		game = discord.Game(f'"{snippet}"')
 		

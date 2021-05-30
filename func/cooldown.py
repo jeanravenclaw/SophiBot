@@ -14,6 +14,7 @@ def cooldown_cmd(rate, per, type):
 	cooldown = cooldown_cmd(rate, per, type)
 	bucket = message_cooldown.get_bucket(message/ctx)
 	retry_after = bucket.update_rate_limit()
+	
 	if retry_after:
 	  pass # if there's a cooldown, do this
 	else:
@@ -21,16 +22,7 @@ def cooldown_cmd(rate, per, type):
 	```
 	"""
 	cooldown = commands.CooldownMapping
-	"""
-	default
-	user
-	guild
-	channel
-	member
-	category
-	role
-	"""
-	
+
 	if type == "default":
 		return cooldown.from_cooldown(rate, per, commands.BucketType.default)
 	if type == "user":

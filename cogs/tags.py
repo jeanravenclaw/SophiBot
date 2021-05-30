@@ -1,12 +1,7 @@
-from discord.ext.commands.cooldowns import BucketType
-import os
-import random
 import discord
-import typing
 from replit import db
 from discord.ext import commands
-from func.cooldown import cooldown_cmd
-from func.tagfinder import find_tag
+from ..func.tagfinder import *
 
 class tags(commands.Cog):
 	def __init__(self, bot):

@@ -5,8 +5,8 @@ import discord
 import typing
 from replit import db
 from discord.ext import commands
-from func.data import value_check, economy_rank, eco_lb, get_rank, progress_bar, le_lb
-from func.cooldown import cooldown_cmd
+from ..func.data import *
+from ..func.cooldown import *
 
 randint = random.randint
 

@@ -133,4 +133,7 @@ Bye, bye, baby"""
 ts_lyrics = ts_lyrics.split("\n")
 
 def random_lyric():
-	return ts_lyrics[random.randint(0, len(ts_lyrics))]
+    """
+    Returns a random lyric.
+    """
+    return ts_lyrics[random.randint(0, len(ts_lyrics))]
