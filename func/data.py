@@ -1,7 +1,6 @@
 import discord
 from replit import db
 from discord.ext import commands
-from .db import db
 
 
 def value_check(id, key, default):

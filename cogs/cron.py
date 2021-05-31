@@ -3,7 +3,7 @@ import discord
 from discord.ext import tasks, commands
 from datetime import datetime
 from datetime import date
-from ..func.lyrics.tv_lyrics import *
+from func.lyrics.tv_lyrics import random_lyric
 import calendar
 
 timetable = [

@@ -3,7 +3,7 @@ import random
 import discord
 from replit import db
 from discord.ext import commands
-from ..func.data import *
+from func.data import value_check
 
 class utility(commands.Cog):
 	def __init__(self, bot):

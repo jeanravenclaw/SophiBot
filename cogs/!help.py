@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from ..func.ez import *
+from func.ez import l, wrap
 
 class MyHelpCommand(commands.MinimalHelpCommand):
 	def get_command_signature(self, command):

@@ -1,7 +1,7 @@
 import discord
 from replit import db
 from discord.ext import commands
-from ..func.tagfinder import *
+from func.tagfinder import find_tag
 
 class tags(commands.Cog):
 	def __init__(self, bot):

@@ -5,8 +5,7 @@ import discord
 import typing
 from replit import db
 from discord.ext import commands
-from ..func.server import *
-from ..func.ez import *
+from func.server import server_var
 
 class counting(commands.Cog):
 	def __init__(self, bot):
