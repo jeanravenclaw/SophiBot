@@ -1,6 +1,6 @@
 import json
 
-filename = "database.json"
+filename = "database.json" # where to find database
 
 class Data:
 	def read(to_dict : bool = True):
