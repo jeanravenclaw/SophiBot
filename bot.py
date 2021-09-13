@@ -18,7 +18,6 @@ initial_extensions = ['cogs.!help',
 					  'cogs.utility',
 					  'cogs.tags',
 					  'cogs.cron',
-					  'cogs.counting',
 					  'cogs.fun']
 
 # add your prefix here!
@@ -97,7 +96,7 @@ async def on_raw_reaction_add(ctx):
 			embed.timestamp = datetime.datetime.utcnow() 
 			embed.colour = 0xffac33
 
-			await board.send(embed=embed)
+			await board.send(embed=embed) 
 
 @bot.command(
 	name='dump',  # name of command, like !help
